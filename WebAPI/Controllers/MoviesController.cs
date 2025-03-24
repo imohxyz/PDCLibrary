@@ -2,12 +2,14 @@
 using Cinema9.DataContracts.Movies.Commands.UpdateMovie;
 using Cinema9.DataContracts.Movies.Queries.GetMovie;
 using Cinema9.DataContracts.Movies.Queries.GetMovies;
+using Cinema9.DataContracts.Movies.Queries.GetMoviesLookup;
 using Cinema9.Logics.Common.Exceptions;
 using Cinema9.Logics.Movies.Commands.CreateMovie;
 using Cinema9.Logics.Movies.Commands.DeleteMovie;
 using Cinema9.Logics.Movies.Commands.UpdateMovie;
 using Cinema9.Logics.Movies.Queries.GetMovie;
 using Cinema9.Logics.Movies.Queries.GetMovies;
+using Cinema9.Logics.Movies.Queries.GetMoviesLookup;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,6 +23,14 @@ public class MoviesController(ISender sender) : ControllerBase
     public async Task<ActionResult<List<MovieIndex>>> GetMoviesAsync()
     {
         var request = new GetMoviesQuery();
+
+        return await sender.Send(request);
+    }
+
+    [HttpGet("lookup")]
+    public async Task<ActionResult<List<MovieLookup>>> GetMoviesLookupAsync()
+    {
+        var request = new GetMoviesLookupQuery();
 
         return await sender.Send(request);
     }
