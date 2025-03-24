@@ -46,7 +46,6 @@ public partial class Edit
             Title = movie.Title,
             Synopsis = movie.Synopsis,
             ReleaseDate = movie.ReleaseDate.LocalDateTime,
-            Rating = movie.Rating,
             Budget = movie.Budget,
             Country = _countries.Single(x => x.Id == movie.CountryId)
         };
@@ -67,7 +66,6 @@ public partial class Edit
             Title = _model.Title,
             Synopsis = _model.Synopsis,
             ReleaseDate = _model.ReleaseDate.Value,
-            Rating = _model.Rating,
             Budget = _model.Budget,
             CountryId = _model.Country.Id
         };
@@ -91,7 +89,6 @@ public record EditMovieModel
     public required string Title { get; set; }
     public required string? Synopsis { get; set; }
     public required DateTime? ReleaseDate { get; set; }
-    public required float Rating { get; set; }
     public required decimal Budget { get; set; }
     public required CountryLookup Country { get; set; }
 }

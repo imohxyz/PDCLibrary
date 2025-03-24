@@ -18,7 +18,6 @@ public class UpdateMovieHandler(MyDatabase database) : IRequestHandler<UpdateMov
         movie.Title = request.Title;
         movie.Synopsis = request.Synopsis;
         movie.ReleaseDate = request.ReleaseDate;
-        movie.Rating = request.Rating;
         movie.Budget = request.Budget;
         movie.CountryId = request.CountryId;
 

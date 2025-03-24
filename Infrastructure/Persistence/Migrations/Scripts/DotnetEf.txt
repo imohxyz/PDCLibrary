@@ -6,6 +6,7 @@
 
 ## Add Migration
 dotnet ef migrations add M01Initial --context MyDatabase --project Infrastructure --startup-project WebAPI --output-dir Persistence/Migrations
+dotnet ef migrations add M02Initial --context MyDatabase --project Infrastructure --startup-project WebAPI --output-dir Persistence/Migrations
 
 ## Remove Migration
 dotnet ef migrations remove  --context MyDatabase --project Infrastructure --startup-project WebAPI

@@ -11,4 +11,6 @@ public record MovieDetail
     public required Guid CountryId { get; init; }
     public required string CountryCode { get; init; }
     public required string CountryName { get; init; }
+
+    public required IEnumerable<MovieDetailReview> Reviews { get; init; }
 }

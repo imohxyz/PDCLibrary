@@ -12,48 +12,147 @@
 @if (_movie is not null)
 {
     <MudStack Row="true"
-              Justify="Justify.FlexEnd"
-              Class="mb-4">
-        <MudButton Variant="Variant.Filled"
-                   Color="Color.Secondary"
-                   Size="Size.Small"
-                   Href="@($"Movies/Edit/{_movie.Id}")">
-            Edit
-        </MudButton>
-        <MudButton Variant="Variant.Filled"
-                   Color="Color.Dark"
-                   Size="Size.Small"
-                   OnClick="ShowDialogRemoveMovie">
-            Remove
-        </MudButton>
+              Justify="Justify.SpaceBetween"
+              Class="mb-10">
+        <div style="font-size: 50px;">
+            @_movie.Title
+        </div>
+        <div style="font-size: 50px;">
+            @if (_movie.Reviews.Any())
+            {
+                <span>
+                    @_movie.Rating.ToString("N1")/10
+                </span>
+            }
+            else
+            {
+                <span>N/A</span>
+            }
+        </div>
     </MudStack>
     <MudGrid>
         <MudItem xs="12" md="6">
-            <MudField Label="Title">@_movie.Title</MudField>
-        </MudItem>
-        <MudItem xs="12" md="6">
-            <MudField Label="Country" HelperText="@_movie.CountryCode">@_movie.CountryName</MudField>
-        </MudItem>
-        <MudItem xs="12" md="6">
-            <MudField Label="Release Date">@_movie.ReleaseDate.ToString("d MMMM yyyy")</MudField>
+            <MudField Label="Country"
+                      HelperText="@_movie.CountryCode">
+                @_movie.CountryName
+            </MudField>
         </MudItem>
         <MudItem xs="12" sm="6" md="3">
-            <MudField Label="Rating">@_movie.Rating</MudField>
+            <MudField Label="Release Date">
+                @_movie.ReleaseDate.ToString("d MMMM yyyy")
+            </MudField>
         </MudItem>
         <MudItem xs="12" sm="6" md="3">
-            <MudField Label="Budget">@_movie.Budget.ToString("N0")</MudField>
+            <MudField Label="Budget"
+                      Adornment="Adornment.Start"
+                      AdornmentText="USD">
+                @_movie.Budget.ToString("N0")
+            </MudField>
         </MudItem>
         <MudItem xs="12">
-            <MudField Label="Synopsis">@_movie.Synopsis</MudField>
+            <MudField Label="Synopsis">
+                @_movie.Synopsis
+            </MudField>
         </MudItem>
     </MudGrid>
+    <MudStack Row="true"
+              Justify="Justify.SpaceBetween"
+              Class="mt-4">
+        <div>
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Default"
+                       Size="Size.Small"
+                       Href="Movies">Back</MudButton>
+        </div>
+        <MudStack Row="true"
+                  Justify="Justify.FlexEnd">
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Secondary"
+                       Size="Size.Small"
+                       Href="@($"Movies/Edit/{_movie.Id}")">
+                Edit
+            </MudButton>
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Dark"
+                       Size="Size.Small"
+                       OnClick="ShowDialogRemoveMovie">
+                Remove
+            </MudButton>
+        </MudStack>
+    </MudStack>
+    <MudDivider Class="my-7" />
+    <MudStack Row="true"
+              Justify="Justify.SpaceBetween"
+              AlignItems="AlignItems.Baseline">
+        <MudText Typo="Typo.h2">
+            Reviews
+        </MudText>
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Tertiary"
+                   Size="Size.Small"
+                   StartIcon="@Icons.Material.Filled.AddBox"
+                   OnClick="ShowDialogAddReview">
+            Add Review
+        </MudButton>
+    </MudStack>
+    <MudExpansionPanels>
+        @if (!_movie.Reviews.Any())
+        {
+            <MudAlert Variant="Variant.Filled"
+                      Severity="Severity.Info">
+                This Movie has no Reviews yet.
+            </MudAlert>
+        }
+        else
+        {
+            <MudExpansionPanel Expanded="true">
+                @foreach (var review in _movie.Reviews.OrderByDescending(x => x.Created))
+                {
+                    <MudPaper Outlined="true"
+                              Class="pa-6 mb-8">
+                        <MudStack Row="true"
+                                  Justify="Justify.SpaceBetween">
+                            <MudText Typo="Typo.h5">
+                                <strong>
+                                    @review.ReviewerName
+                                </strong>
+                            </MudText>
+                            <MudStack Row="true"
+                                      AlignItems="AlignItems.Center">
+                                <MudIcon Icon="@Icons.Material.Filled.Star"
+                                         Color="Color.Warning"
+                                         Title="Score" />
+                                <MudText Typo="Typo.subtitle1">
+                                    @review.Score/10
+                                </MudText>
+                            </MudStack>
+                        </MudStack>
+                        <MudDivider Class="my-4" />
+                        <MudText Typo="Typo.body1"
+                                 Class="my-6"
+                                 Style="white-space: pre-line">
+                            @review.Comment
+                        </MudText>
+                        <MudDivider Class="my-4" />
+                        <MudStack Row="true"
+                                  Justify="Justify.SpaceBetween"
+                                  AlignItems="AlignItems.Center"
+                                  Class="mb-4">
+                            <MudText Typo="Typo.body2">
+                                @review.Created.ToString("d MMMM yyyy HH:mm:ss")
+                            </MudText>
+                            <MudButton Variant="Variant.Filled"
+                                       Color="Color.Dark"
+                                       Size="Size.Small"
+                                       StartIcon="@Icons.Material.Filled.Delete"
+                                       OnClick="() => ShowDialogRemoveReview(review.Id)">
+                                Remove
+                            </MudButton>
+                        </MudStack>
+                    </MudPaper>
+                }
+            </MudExpansionPanel>
+        }
+    </MudExpansionPanels>
 }
 
-<MudStack Row="true"
-          Justify="Justify.FlexEnd"
-          Class="mt-4">
-    <MudButton Variant="Variant.Filled"
-               Color="Color.Tertiary"
-               Size="Size.Small"
-               Href="Movies">Back</MudButton>
-</MudStack>
