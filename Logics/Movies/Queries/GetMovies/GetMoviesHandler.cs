@@ -15,7 +15,8 @@ public class GetMoviesHandler(MyDatabase database) : IRequestHandler<GetMoviesQu
             {
                 Id = x.Id,
                 Title = x.Title,
-                Rating = x.Rating
+                Rating = x.Rating,
+                CountryName = x.Country.Name
             })
             .ToListAsync(cancellationToken);
 

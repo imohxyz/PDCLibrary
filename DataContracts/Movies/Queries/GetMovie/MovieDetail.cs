@@ -8,4 +8,7 @@ public record MovieDetail
     public required DateTimeOffset ReleaseDate { get; init; }
     public required float Rating { get; init; }
     public required decimal Budget { get; init; }
+    public required Guid CountryId { get; init; }
+    public required string CountryCode { get; init; }
+    public required string CountryName { get; init; }
 }

@@ -20,6 +20,7 @@ public class UpdateMovieHandler(MyDatabase database) : IRequestHandler<UpdateMov
         movie.ReleaseDate = request.ReleaseDate;
         movie.Rating = request.Rating;
         movie.Budget = request.Budget;
+        movie.CountryId = request.CountryId;
 
         await database.SaveChangesAsync(cancellationToken);
     }

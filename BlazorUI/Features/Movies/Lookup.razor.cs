@@ -5,7 +5,6 @@ namespace Cinema9.BlazorUI.Features.Movies;
 public partial class Lookup
 {
     private List<MovieLookup> _movies = [];
-
     private MovieLookup? _selectedMovie = null;
 
     bool _isLoading = false;
