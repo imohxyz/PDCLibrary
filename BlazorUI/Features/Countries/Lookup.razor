@@ -1,0 +1,46 @@
+﻿@page "/Countries/Lookup"
+
+@using Cinema9.DataContracts.Countries.Queries.GetCountriesLookup
+
+<PageHeader Title="Contoh Lookup Countries" />
+
+@if (_isLoading)
+{
+    <MudProgressLinear Color="Color.Primary"
+                       Striped="true"
+                       Indeterminate="true"
+                       Class="my-7" />
+}
+
+<MudSelect Label="Select Country"
+           Placeholder="Please select a Country"
+           Variant="Variant.Outlined"
+           T="CountryLookup"
+           @bind-Value="_selectedCountry"
+           Class="mb-8">
+    @foreach (var country in _countries)
+    {
+        <MudSelectItem Value="@country">
+            @country.Name
+        </MudSelectItem>
+    }
+</MudSelect>
+
+@if (_selectedCountry is not null)
+{
+    <MudAlert Variant="Variant.Filled"
+              Severity="Severity.Info">
+        <MudText>
+            You have selected: @_selectedCountry.Name with ID @_selectedCountry.Id
+        </MudText>
+    </MudAlert>
+}
+else
+{
+    <MudAlert Variant="Variant.Filled"
+              Severity="Severity.Warning">
+        <MudText>
+            You haven't select a Country
+        </MudText>
+    </MudAlert>
+}
