@@ -8,4 +8,5 @@ public record UpdateMovieInput
     public required DateTimeOffset ReleaseDate { get; set; }
     public required float Rating { get; set; }
     public required decimal Budget { get; set; }
+    public required Guid CountryId { get; set; }
 }

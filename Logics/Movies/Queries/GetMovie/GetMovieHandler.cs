@@ -20,7 +20,10 @@ public class GetMovieHandler(MyDatabase database) : IRequestHandler<GetMovieQuer
                 Synopsis = x.Synopsis,
                 ReleaseDate = x.ReleaseDate,
                 Rating = x.Rating,
-                Budget = x.Budget
+                Budget = x.Budget,
+                CountryId = x.CountryId,
+                CountryCode = x.Country.Code,
+                CountryName = x.Country.Name
             })
             .SingleOrDefaultAsync(cancellationToken)
             ?? throw new NotFoundException("Movie not found");

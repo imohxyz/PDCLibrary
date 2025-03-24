@@ -1,24 +1,58 @@
 ﻿@page "/Movies/Create"
 
+@using Cinema9.DataContracts.Countries.Queries.GetCountriesLookup
+
 <PageHeader Title="Create Movie" />
+
+@if (!string.IsNullOrWhiteSpace(_errorMessage))
+{
+    <MudAlert Severity="Severity.Error">
+        @_errorMessage
+    </MudAlert>
+}
 
 @if (_model is not null)
 {
     <MudGrid>
         <MudItem xs="12" md="6">
-            <MudTextField Label="Title" @bind-Value="_model.Title" />
+            <MudTextField Label="Title"
+                          @bind-Value="_model.Title" />
         </MudItem>
         <MudItem xs="12" md="6">
-            <MudDatePicker Label="Release Date" @bind-Date="_model.ReleaseDate" />
+            <MudSelect Label="Select Country"
+                       Variant="Variant.Outlined"
+                       T="CountryLookup"
+                       @bind-Value="_model.Country"
+                       Class="mb-8">
+                @foreach (var country in _countries)
+                {
+                    <MudSelectItem Value="@country">
+                        @country.Name
+                    </MudSelectItem>
+                }
+            </MudSelect>
         </MudItem>
         <MudItem xs="12" md="6">
-            <MudTextField Label="Budget" @bind-Value="_model.Budget" />
+            <MudDatePicker Label="Release Date"
+                           @bind-Date="_model.ReleaseDate" />
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudTextField Label="Budget"
+                          AdornmentText="USD"
+                          Adornment="Adornment.Start"
+                          Format="N0"
+                          @bind-Value="_model.Budget" />
         </MudItem>
     </MudGrid>
 
-    <div style="text-align: right;" class="mt-6">
-        <MudButton Variant="Variant.Filled" Color="Color.Error" Href="Movies">Cancel</MudButton>
-        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Submit">Submit</MudButton>
-    </div>
+    <MudStack Row="true"
+              Justify="Justify.FlexEnd"
+              Class="mt-4">
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Error"
+                   Href="Movies">Cancel</MudButton>
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   OnClick="Submit">Submit</MudButton>
+    </MudStack>
 }
-

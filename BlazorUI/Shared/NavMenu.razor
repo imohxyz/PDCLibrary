@@ -3,6 +3,16 @@
 </div>
 <MudNavMenu>
     <MudNavLink Href="" Match="NavLinkMatch.All">Home</MudNavLink>
-    <MudNavLink Href="Movies" Match="NavLinkMatch.All">Movies</MudNavLink>
-    <MudNavLink Href="Movies/Lookup" Match="NavLinkMatch.Prefix">Lookup Movies</MudNavLink>
+    <MudNavGroup Title="Movies"
+                 Icon="@Icons.Material.Filled.Movie"
+                 Expanded="true">
+        <MudNavLink Href="Movies" Match="NavLinkMatch.All">Index</MudNavLink>
+        <MudNavLink Href="Movies/Lookup" Match="NavLinkMatch.Prefix">Lookup</MudNavLink>
+    </MudNavGroup>
+    <MudNavGroup Title="Countries"
+                 Icon="@Icons.Material.Filled.AirplanemodeActive"
+                 Expanded="true">
+        <MudNavLink Href="Countries" Match="NavLinkMatch.All">Index</MudNavLink>
+        <MudNavLink Href="Countries/Lookup" Match="NavLinkMatch.Prefix">Lookup</MudNavLink>
+    </MudNavGroup>
 </MudNavMenu>

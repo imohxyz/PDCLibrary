@@ -1,8 +1,8 @@
-﻿@page "/Movies/Lookup"
+﻿@page "/Countries/Lookup"
 
-@using Cinema9.DataContracts.Movies.Queries.GetMoviesLookup
+@using Cinema9.DataContracts.Countries.Queries.GetCountriesLookup
 
-<PageHeader Title="Contoh Lookup Movies" />
+<PageHeader Title="Contoh Lookup Countries" />
 
 @if (_isLoading)
 {
@@ -12,26 +12,26 @@
                        Class="my-7" />
 }
 
-<MudSelect Label="Select Movie"
-           Placeholder="Please select a Movie"
+<MudSelect Label="Select Country"
+           Placeholder="Please select a Country"
            Variant="Variant.Outlined"
-           T="MovieLookup"
-           @bind-Value="_selectedMovie"
+           T="CountryLookup"
+           @bind-Value="_selectedCountry"
            Class="mb-8">
-    @foreach (var movie in _movies)
+    @foreach (var country in _countries)
     {
-        <MudSelectItem Value="@movie">
-            @movie.Title
+        <MudSelectItem Value="@country">
+            @country.Name
         </MudSelectItem>
     }
 </MudSelect>
 
-@if (_selectedMovie is not null)
+@if (_selectedCountry is not null)
 {
     <MudAlert Variant="Variant.Filled"
               Severity="Severity.Info">
         <MudText>
-            You have selected: @_selectedMovie.Title with ID @_selectedMovie.Id
+            You have selected: @_selectedCountry.Name with ID @_selectedCountry.Id
         </MudText>
     </MudAlert>
 }
@@ -40,7 +40,7 @@ else
     <MudAlert Variant="Variant.Filled"
               Severity="Severity.Warning">
         <MudText>
-            You haven't select a Movie
+            You haven't select a Country
         </MudText>
     </MudAlert>
 }

@@ -4,11 +4,12 @@ using Cinema9.Logics;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
-builder.Services.AddInfrastructure();
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddLogics();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+await app.InitializeDatabase();
 
 var pathBase = builder.Configuration["PathBase"];
 

@@ -62,7 +62,8 @@ public class MoviesController(ISender sender) : ControllerBase
         {
             Title = input.Title,
             ReleaseDate = input.ReleaseDate,
-            Budget = input.Budget
+            Budget = input.Budget,
+            CountryId = input.CountryId
         };
 
         var output = await sender.Send(request);
@@ -94,7 +95,8 @@ public class MoviesController(ISender sender) : ControllerBase
                 Synopsis = input.Synopsis,
                 ReleaseDate = input.ReleaseDate,
                 Rating = input.Rating,
-                Budget = input.Budget
+                Budget = input.Budget,
+                CountryId = input.CountryId
             };
 
             await sender.Send(request);

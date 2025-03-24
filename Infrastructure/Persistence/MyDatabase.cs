@@ -1,17 +1,19 @@
 ﻿using Cinema9.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using System.Reflection;
 
 namespace Cinema9.Infrastructure.Persistence;
 
-public class MyDatabase(IConfiguration configuration) : DbContext
+public class MyDatabase(DbContextOptions<MyDatabase> options) : DbContext(options)
 {
-    private readonly string _connectionString = configuration["ConnectionStrings:MyDatabase"]!;
-
+    public DbSet<Country> Countries => Set<Country>();
     public DbSet<Movie> Movies => Set<Movie>();
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        optionsBuilder.UseSqlServer(_connectionString);
+        _ = modelBuilder.HasDefaultSchema("cinema9");
+        _ = modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+        base.OnModelCreating(modelBuilder);
     }
 }

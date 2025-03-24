@@ -2,13 +2,21 @@
 
 <PageHeader Title="Movies" />
 
-<div style="text-align: right;" class="mb-6">
-    <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="Movies/Create">Create Movie</MudButton>
-</div>
+<MudStack Row="true"
+          Justify="Justify.FlexEnd"
+          Class="mb-4">
+    <MudButton Variant="Variant.Filled"
+               Color="Color.Primary"
+               Href="Movies/Create">
+        Create Movie
+    </MudButton>
+</MudStack>
 <MudText Typo="Typo.h2">
     Menggunakan <strong>MudSimpleTable</strong>
 </MudText>
-<MudSimpleTable Bordered="true" Striped="true" Hover="true">
+<MudSimpleTable Bordered="true"
+                Striped="true"
+                Hover="true">
     <thead>
         <tr>
             <th>Title</th>
@@ -20,7 +28,10 @@
         {
             <tr>
                 <td colspan="2">
-                    <MudProgressLinear Color="Color.Primary" Striped="true" Indeterminate="true" Class="my-7" />
+                    <MudProgressLinear Color="Color.Primary"
+                                       Striped="true"
+                                       Indeterminate="true"
+                                       Class="my-7" />
                 </td>
             </tr>
         }

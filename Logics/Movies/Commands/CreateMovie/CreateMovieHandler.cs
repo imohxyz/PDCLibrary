@@ -17,7 +17,8 @@ public class CreateMovieHandler(MyDatabase database) : IRequestHandler<CreateMov
             ReleaseDate = request.ReleaseDate,
             Budget = request.Budget,
             Synopsis = null,
-            Rating = 0.0F
+            Rating = 0.0F,
+            CountryId = request.CountryId
         };
 
         await database.Movies.AddAsync(movie, cancellationToken);

@@ -1,0 +1,24 @@
+﻿# Script for EF Core Code-First Migrations
+
+## Penting:
+- Gunakan Windows Terminal yang jenisnya Command Prompt (CMD), bukan PowerShell
+- Selalu jalankan script ini dari folder root solution (yaitu folder yang ada file Cinema9.sln nya)
+
+## Add Migration
+dotnet ef migrations add M01Initial --context MyDatabase --project Infrastructure --startup-project WebAPI --output-dir Persistence/Migrations
+
+## Remove Migration
+dotnet ef migrations remove  --context MyDatabase --project Infrastructure --startup-project WebAPI
+
+## Update Database
+dotnet ef database update --context DatabaseService --project Infrastructure --startup-project WebAPI
+
+## Drop Database
+dotnet ef database drop --force --context DatabaseService --project Infrastructure --startup-project WebAPI
+
+
+## Update EF Core Tools
+
+Info: Script ini bisa dijalankan di Terminal dalam keadaan di folder mana pun
+
+dotnet tool update --global dotnet-ef

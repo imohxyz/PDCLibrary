@@ -32,12 +32,15 @@
             <MudField Label="Title">@_movie.Title</MudField>
         </MudItem>
         <MudItem xs="12" md="6">
+            <MudField Label="Country" HelperText="@_movie.CountryCode">@_movie.CountryName</MudField>
+        </MudItem>
+        <MudItem xs="12" md="6">
             <MudField Label="Release Date">@_movie.ReleaseDate.ToString("d MMMM yyyy")</MudField>
         </MudItem>
-        <MudItem xs="12" md="6">
+        <MudItem xs="12" sm="6" md="3">
             <MudField Label="Rating">@_movie.Rating</MudField>
         </MudItem>
-        <MudItem xs="12" md="6">
+        <MudItem xs="12" sm="6" md="3">
             <MudField Label="Budget">@_movie.Budget.ToString("N0")</MudField>
         </MudItem>
         <MudItem xs="12">
