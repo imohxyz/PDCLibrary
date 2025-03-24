@@ -27,7 +27,7 @@ public class MoviesController(ISender sender) : ControllerBase
         return await sender.Send(request);
     }
 
-    [HttpGet("lookup")]
+    [HttpGet("Lookup")]
     public async Task<ActionResult<List<MovieLookup>>> GetMoviesLookupAsync()
     {
         var request = new GetMoviesLookupQuery();

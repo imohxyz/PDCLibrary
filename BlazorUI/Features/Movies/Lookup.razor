@@ -1,0 +1,37 @@
+﻿@page "/Movies/Lookup"
+
+@using Cinema9.DataContracts.Movies.Queries.GetMoviesLookup
+
+<PageHeader Title="Contoh Lookup Movies" />
+
+@if (_isLoading)
+{
+    <MudProgressLinear Color="Color.Primary" Striped="true" Indeterminate="true" Class="my-7" />
+}
+
+<MudSelect Label="Select Movie"
+           Placeholder="Please select a Movie"
+           Variant="Variant.Outlined"
+           T="MovieLookup"
+           @bind-Value="_selectedMovie"
+           Class="mb-8">
+    @foreach (var movie in _movies)
+    {
+        <MudSelectItem Value="@movie">@movie.Title</MudSelectItem>
+    }
+</MudSelect>
+
+@if (_selectedMovie is not null)
+{
+    <MudAlert Variant="Variant.Filled"
+              Severity="Severity.Info">
+        <MudText>You have selected: @_selectedMovie.Title with ID @_selectedMovie.Id</MudText>
+    </MudAlert>
+}
+else
+{
+    <MudAlert Variant="Variant.Filled"
+              Severity="Severity.Warning">
+        <MudText>You haven't select a Movie</MudText>
+    </MudAlert>
+}
