@@ -1,0 +1,24 @@
+﻿@page "/Movies/Create"
+
+<PageHeader Title="Create Movie" />
+
+@if (_model is not null)
+{
+    <MudGrid>
+        <MudItem xs="12" md="6">
+            <MudTextField Label="Title" @bind-Value="_model.Title" />
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudDatePicker Label="Release Date" @bind-Date="_model.ReleaseDate" />
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudTextField Label="Budget" @bind-Value="_model.Budget" />
+        </MudItem>
+    </MudGrid>
+
+    <div style="text-align: right;" class="mt-6">
+        <MudButton Variant="Variant.Filled" Color="Color.Error" Href="Movies">Cancel</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Submit">Submit</MudButton>
+    </div>
+}
+

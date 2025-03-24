@@ -1,0 +1,56 @@
+﻿@page "/Movies/Details/{MovieId:guid}"
+
+<PageHeader Title="Movie Details" />
+
+@if (!string.IsNullOrWhiteSpace(_errorMessage))
+{
+    <MudAlert Severity="Severity.Error">
+        @_errorMessage
+    </MudAlert>
+}
+
+@if (_movie is not null)
+{
+    <MudStack Row="true"
+              Justify="Justify.FlexEnd"
+              Class="mb-4">
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Secondary"
+                   Size="Size.Small"
+                   Href="@($"Movies/Edit/{_movie.Id}")">
+            Edit
+        </MudButton>
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Dark"
+                   Size="Size.Small"
+                   OnClick="ShowDialogRemoveMovie">
+            Remove
+        </MudButton>
+    </MudStack>
+    <MudGrid>
+        <MudItem xs="12" md="6">
+            <MudField Label="Title">@_movie.Title</MudField>
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudField Label="Release Date">@_movie.ReleaseDate.ToString("d MMMM yyyy")</MudField>
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudField Label="Rating">@_movie.Rating</MudField>
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudField Label="Budget">@_movie.Budget.ToString("N0")</MudField>
+        </MudItem>
+        <MudItem xs="12">
+            <MudField Label="Synopsis">@_movie.Synopsis</MudField>
+        </MudItem>
+    </MudGrid>
+}
+
+<MudStack Row="true"
+          Justify="Justify.FlexEnd"
+          Class="mt-4">
+    <MudButton Variant="Variant.Filled"
+               Color="Color.Tertiary"
+               Size="Size.Small"
+               Href="Movies">Back</MudButton>
+</MudStack>

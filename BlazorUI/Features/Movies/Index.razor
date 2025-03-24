@@ -1,0 +1,51 @@
+﻿@page "/Movies"
+
+<PageHeader Title="Movies" />
+
+<div style="text-align: right;" class="mb-6">
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" Href="Movies/Create">Create Movie</MudButton>
+</div>
+<MudText Typo="Typo.h2">
+    Menggunakan <strong>MudSimpleTable</strong>
+</MudText>
+<MudSimpleTable Bordered="true" Striped="true" Hover="true">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Rating</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (_isLoading)
+        {
+            <tr>
+                <td colspan="2">
+                    <MudProgressLinear Color="Color.Primary" Striped="true" Indeterminate="true" Class="my-7" />
+                </td>
+            </tr>
+        }
+        @foreach (var movie in _movies)
+        {
+            <tr>
+                <td>
+                    <MudLink Href="@($"Movies/Details/{movie.Id}")">@movie.Title</MudLink>
+                </td>
+                <td>@movie.Rating</td>
+            </tr>
+        }
+    </tbody>
+</MudSimpleTable>
+<MudDivider Class="my-10" />
+<MudText Typo="Typo.h2">
+    Menggunakan <strong>MudTable</strong>
+</MudText>
+<MudTable Items="@_movies" Bordered="true" Hover="true" Striped="true" Loading="_isLoading">
+    <HeaderContent>
+        <MudTh>Title</MudTh>
+        <MudTh>Rating</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd><MudLink Href="@($"Movies/Details/{context.Id}")">@context.Title</MudLink></MudTd>
+        <MudTd>@context.Rating</MudTd>
+    </RowTemplate>
+</MudTable>

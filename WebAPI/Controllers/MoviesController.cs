@@ -25,7 +25,7 @@ public class MoviesController(ISender sender) : ControllerBase
         return await sender.Send(request);
     }
 
-    [HttpGet("{movieId:int}")]
+    [HttpGet("{movieId:guid}")]
     public async Task<ActionResult<MovieDetail>> GetMovieAsync(Guid movieId)
     {
         try
@@ -60,9 +60,16 @@ public class MoviesController(ISender sender) : ControllerBase
         return output;
     }
 
-    [HttpPut("{movieId:Guid}")]
+    [HttpPut("{movieId:guid}")]
     public async Task<ActionResult> UpdateMovieAsync(Guid movieId, [FromBody] UpdateMovieInput input)
     {
+        Console.WriteLine($"input.Id: {input.Id}");
+        Console.WriteLine($"input.Title: {input.Title}");
+        Console.WriteLine($"input.Synopsis: {input.Synopsis}");
+        Console.WriteLine($"input.ReleaseDate: {input.ReleaseDate}");
+        Console.WriteLine($"input.Rating: {input.Rating}");
+        Console.WriteLine($"input.Budget: {input.Budget}");
+
         if (movieId != input.Id)
         {
             return BadRequest();
@@ -90,7 +97,7 @@ public class MoviesController(ISender sender) : ControllerBase
         return NoContent();
     }
 
-    [HttpDelete("{movieId:Guid}")]
+    [HttpDelete("{movieId:guid}")]
     public async Task<ActionResult> DeleteMovie(Guid movieId)
     {
         try

@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logics", "Logics\Logics.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{FD3C2A82-F578-4757-8265-4515124B1765}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorUI", "BlazorUI\BlazorUI.csproj", "{8FCB112E-DFF2-46ED-98E1-D80F4C2DADBC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{FD3C2A82-F578-4757-8265-4515124B1765}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FD3C2A82-F578-4757-8265-4515124B1765}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FD3C2A82-F578-4757-8265-4515124B1765}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FCB112E-DFF2-46ED-98E1-D80F4C2DADBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FCB112E-DFF2-46ED-98E1-D80F4C2DADBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FCB112E-DFF2-46ED-98E1-D80F4C2DADBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FCB112E-DFF2-46ED-98E1-D80F4C2DADBC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

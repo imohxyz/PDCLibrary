@@ -1,0 +1,34 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>Cinema9</PageTitle>
+
+<MudThemeProvider Theme="myTheme" />
+<MudPopoverProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar>
+        <MudIconButton Icon="@Icons.Material.Filled.Apps"
+                       Color="Color.Inherit"
+                       Edge="Edge.Start"
+                       Class="mr-4"
+                       OnClick="DrawerToggle" />
+        <div class="bar-title">
+            Blazor Server using .NET 9
+        </div>
+        <MudSpacer />
+        <div class="bar-date">
+            @DateTimeOffset.Now.ToString("dd-MMMM-yyyy")
+        </div>
+    </MudAppBar>
+    <MudDrawer @bind-Open="@_drawerOpen">
+        <NavMenu />
+    </MudDrawer>
+    <MudMainContent>
+        <div class="py-4 px-8">
+            @Body
+        </div>
+    </MudMainContent>
+</MudLayout>
+
