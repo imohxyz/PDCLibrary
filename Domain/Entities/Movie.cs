@@ -11,4 +11,6 @@ public class Movie
 
     public required Guid CountryId { get; set; }
     public Country Country { get; set; } = default!;
+
+    public ICollection<Review> Reviews { get; set; } = [];
 }

@@ -74,13 +74,6 @@ public class MoviesController(ISender sender) : ControllerBase
     [HttpPut("{movieId:guid}")]
     public async Task<ActionResult> UpdateMovieAsync(Guid movieId, [FromBody] UpdateMovieInput input)
     {
-        Console.WriteLine($"input.Id: {input.Id}");
-        Console.WriteLine($"input.Title: {input.Title}");
-        Console.WriteLine($"input.Synopsis: {input.Synopsis}");
-        Console.WriteLine($"input.ReleaseDate: {input.ReleaseDate}");
-        Console.WriteLine($"input.Rating: {input.Rating}");
-        Console.WriteLine($"input.Budget: {input.Budget}");
-
         if (movieId != input.Id)
         {
             return BadRequest();
@@ -94,7 +87,6 @@ public class MoviesController(ISender sender) : ControllerBase
                 Title = input.Title,
                 Synopsis = input.Synopsis,
                 ReleaseDate = input.ReleaseDate,
-                Rating = input.Rating,
                 Budget = input.Budget,
                 CountryId = input.CountryId
             };

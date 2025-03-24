@@ -1,4 +1,5 @@
 using Cinema9.BlazorUI.Features.Movies.Components;
+using Cinema9.BlazorUI.Features.Reviews.Components;
 using Cinema9.DataContracts.Movies.Queries.GetMovie;
 using Microsoft.AspNetCore.Components;
 
@@ -14,6 +15,11 @@ public partial class Details
 
     protected override async Task OnParametersSetAsync()
     {
+        await LoadMovie();
+    }
+
+    private async Task LoadMovie()
+    {
         _errorMessage = string.Empty;
 
         var baseUrl = Configuration["ApiBaseUrl"]!;
@@ -23,7 +29,7 @@ public partial class Details
 
         if (restResponse.Data is null)
         {
-            _errorMessage = $"Failed to retrieve movie with id {MovieId}.";
+            _errorMessage = $"Failed to retrieve Movie with ID {MovieId}.";
 
             return;
         }
@@ -46,7 +52,7 @@ public partial class Details
 
         if (dialogResult is null || dialogResult.Data is null)
         {
-            _errorMessage = "Cancel remove Movie is null";
+            _errorMessage = "Cancel remove Movie.";
 
             return;
         }
@@ -56,6 +62,60 @@ public partial class Details
         if (isConfirmed)
         {
             Navigator.NavigateTo("Movies");
+        }
+    }
+
+    private async Task ShowDialogAddReview()
+    {
+        _errorMessage = string.Empty;
+
+        var parameters = new DialogParameters
+        {
+            { nameof(DialogAddReview.MovieId), MovieId }
+        };
+
+        var dialog = await DialogService.ShowAsync<DialogAddReview>("Add Review", parameters);
+        var dialogResult = await dialog.Result;
+
+        if (dialogResult is null || dialogResult.Data is null)
+        {
+            _errorMessage = "Cancel add Review.";
+
+            return;
+        }
+
+        var isConfirmed = (bool)dialogResult.Data;
+
+        if (isConfirmed)
+        {
+            await LoadMovie();
+        }
+    }
+
+    private async Task ShowDialogRemoveReview(Guid reviewId)
+    {
+        _errorMessage = string.Empty;
+
+        var parameters = new DialogParameters
+        {
+            { nameof(DialogRemoveReview.ReviewId), reviewId }
+        };
+
+        var dialog = await DialogService.ShowAsync<DialogRemoveReview>("Remove Review", parameters);
+        var dialogResult = await dialog.Result;
+
+        if (dialogResult is null || dialogResult.Data is null)
+        {
+            _errorMessage = "Cancel remove Review.";
+
+            return;
+        }
+
+        var isConfirmed = (bool)dialogResult.Data;
+
+        if (isConfirmed)
+        {
+            await LoadMovie();
         }
     }
 }

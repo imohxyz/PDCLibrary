@@ -50,3 +50,13 @@ h4, h5, h6
     {
         content: "An error has occurred."
     }
+
+.text-center
+{
+    text-align: center;
+}
+
+.text-multiline
+{
+    white-space: pre-wrap;
+}

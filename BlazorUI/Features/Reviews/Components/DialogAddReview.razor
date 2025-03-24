@@ -1,0 +1,34 @@
+﻿<MudDialog>
+    <DialogContent>
+        @if (_input is not null)
+        {
+            <MudGrid>
+                <MudItem xs="12" md="6">
+                    <MudTextField Label="Name"
+                                  @bind-Value="_input.ReviewerName" />
+                </MudItem>
+                <MudItem xs="12" md="6">
+                    <MudRating MaxValue="10"
+                               @bind-SelectedValue="_input.Score" />
+                    <MudText Typo="Typo.subtitle2">
+                        Score
+                    </MudText>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudTextField Label="Comment"
+                                  Lines="5"
+                                  @bind-Value="_input.Comment" />
+                </MudItem>
+            </MudGrid>
+        }
+    </DialogContent>
+    <DialogActions>
+        <MudButton Variant="Variant.Filled"
+                   Size="Size.Small"
+                   OnClick="Cancel">Cancel</MudButton>
+        <MudButton Variant="Variant.Filled"
+                   Size="Size.Small"
+                   Color="Color.Primary"
+                   OnClick="Submit">Submit</MudButton>
+    </DialogActions>
+</MudDialog>
