@@ -19,5 +19,6 @@
   <ItemGroup>
     <PackageReference Include="System.ServiceModel.NetTcp" Version="8.*" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="8.1.2" />
+    <PackageReference Include="System.ServiceModel.Security" Version="4.10.*" />
   </ItemGroup>
 </Project>

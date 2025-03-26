@@ -7,6 +7,12 @@ builder.Services.AddOpenApi();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddLogics();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpClient<CalculatorService>(client => 
+{
+    client.BaseAddress = new Uri("http://www.dneonline.com/");
+    client.DefaultRequestHeaders.Add("SOAPAction", "http://tempuri.org/Multiply");
+    client.Timeout = TimeSpan.FromSeconds(30);
+});
 
 var app = builder.Build();
 await app.InitializeDatabase();
