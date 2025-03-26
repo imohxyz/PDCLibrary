@@ -29,7 +29,7 @@ public partial class Details
 
         if (restResponse.Data is null)
         {
-            _errorMessage = $"Failed to retrieve Movie with ID {MovieId}.";
+            _errorMessage = $"Failed to retrieve Book with ID {MovieId}.";
 
             return;
         }
@@ -47,12 +47,12 @@ public partial class Details
             { nameof(DialogRemoveMovie.Title), _movie.Title }
         };
 
-        var dialog = await DialogService.ShowAsync<DialogRemoveMovie>("Remove Movie", parameters);
+        var dialog = await DialogService.ShowAsync<DialogRemoveMovie>("Remove Book", parameters);
         var dialogResult = await dialog.Result;
 
         if (dialogResult is null || dialogResult.Data is null)
         {
-            _errorMessage = "Cancel remove Movie.";
+            _errorMessage = "Cancel remove Book.";
 
             return;
         }

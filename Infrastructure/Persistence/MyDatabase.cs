@@ -9,6 +9,7 @@ public class MyDatabase(DbContextOptions<MyDatabase> options) : DbContext(option
     public DbSet<Country> Countries => Set<Country>();
     public DbSet<Movie> Movies => Set<Movie>();
     public DbSet<Review> Reviews => Set<Review>();
+    public DbSet<Rent> Rents => Set<Rent>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

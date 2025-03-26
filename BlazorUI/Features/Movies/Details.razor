@@ -1,6 +1,6 @@
 ﻿@page "/Movies/Details/{MovieId:guid}"
 
-<PageHeader Title="Movie Details" />
+<PageHeader Title="Book Details" />
 
 @if (!string.IsNullOrWhiteSpace(_errorMessage))
 {
@@ -100,7 +100,7 @@
         {
             <MudAlert Variant="Variant.Filled"
                       Severity="Severity.Info">
-                This Movie has no Reviews yet.
+                This Book has no Reviews yet.
             </MudAlert>
         }
         else

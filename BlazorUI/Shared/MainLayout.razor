@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<PageTitle>Cinema9</PageTitle>
+<PageTitle>PDC Library</PageTitle>
 
 <MudThemeProvider Theme="myTheme" />
 <MudPopoverProvider />
@@ -8,14 +8,14 @@
 <MudSnackbarProvider />
 
 <MudLayout>
-    <MudAppBar>
+    <MudAppBar style="background-color: red;">
         <MudIconButton Icon="@Icons.Material.Filled.Apps"
                        Color="Color.Inherit"
                        Edge="Edge.Start"
                        Class="mr-4"
                        OnClick="DrawerToggle" />
         <div class="bar-title">
-            Blazor Server using .NET 9
+            PDC Library
         </div>
         <MudSpacer />
         <div class="bar-date">

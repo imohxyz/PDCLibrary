@@ -31,9 +31,9 @@ public partial class Create
 
         _model = new CreateMovieModel
         {
-            Title = "The Matrix",
-            ReleaseDate = DateTime.Now.AddYears(-10),
-            Budget = 50_000_000M,
+            Title = "",
+            ReleaseDate = DateTime.Now,
+            Budget = 0M,
             Country = _countries.First()
         };
     }
@@ -67,7 +67,7 @@ public partial class Create
         {
             var output = restResponse.Data;
 
-            Snackbar.Add($"Berhasil membuat Movie dengan judul {input.Title}.", Severity.Success);
+            Snackbar.Add($"Berhasil membuat Buku dengan judul {input.Title}.", Severity.Success);
 
             Navigator.NavigateTo($"/Movies/Details/{output.MovieId}");
         }

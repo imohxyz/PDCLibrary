@@ -1,0 +1,60 @@
+﻿@page "/Rents/Details/{RentId:guid}"
+
+<PageHeader Title="Transaction Details" />
+
+@if (!string.IsNullOrWhiteSpace(_errorMessage))
+{
+    <MudAlert Severity="Severity.Error">
+        @_errorMessage
+    </MudAlert>
+}
+
+@if (_rent is not null)
+{
+    <MudGrid>
+        <MudItem xs="12" md="6">
+            <MudField Label="Book Title">
+                @_rent.MovieTitle
+            </MudField>
+        </MudItem>
+        <!-- <MudItem xs="12" sm="6" md="6">
+            <MudField Label="Transaction Date">
+                @_rent.CreatedDate.ToString("d MMMM yyyy")
+            </MudField>
+        </MudItem> -->
+        <MudItem xs="12" sm="6" md="6">
+            <MudField Label="Qty"
+                      Adornment="Adornment.Start">
+                @_rent.Qty
+            </MudField>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="6">
+            <MudField Label="Price"
+                      Adornment="Adornment.Start"
+                      AdornmentText="IDR">
+                @_rent.MoviePrice
+            </MudField>
+        </MudItem>
+        <MudItem xs="12">
+            <MudField Label="Total"
+                      Adornment="Adornment.Start"
+                      AdornmentText="IDR"
+                      Format="N0">
+                @_rent.Amount
+            </MudField>
+        </MudItem>
+    </MudGrid>
+    <MudStack Row="true"
+              Justify="Justify.SpaceBetween"
+              Class="mt-4">
+        <div>
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Default"
+                       Size="Size.Small"
+                       Href="Rents">Back</MudButton>
+        </div>
+        <MudStack Row="true" Justify="Justify.FlexEnd">
+        </MudStack>
+    </MudStack>
+}
+

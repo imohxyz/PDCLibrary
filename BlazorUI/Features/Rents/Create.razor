@@ -1,0 +1,49 @@
+﻿@page "/Rents/Create"
+
+@using Cinema9.DataContracts.Movies.Queries.GetMoviesLookup
+
+<PageHeader Title="Add New Transaction" />
+
+@if (!string.IsNullOrWhiteSpace(_errorMessage))
+{
+    <MudAlert Severity="Severity.Error">
+        @_errorMessage
+    </MudAlert>
+}
+
+@if (_model is not null)
+{
+    <MudGrid>
+        <MudItem xs="12" md="6">
+            <MudSelect Label="Select Movie"
+                       Variant="Variant.Outlined"
+                       T="MovieLookup"
+                       @bind-Value="_model.Movie"
+                       Class="mb-8">
+                @foreach (var movie in _movies)
+                {
+                    <MudSelectItem Value="@movie">
+                        @movie.Title
+                    </MudSelectItem>
+                }
+            </MudSelect>
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudTextField Label="Qty"
+                          Adornment="Adornment.Start"
+                          Format="N0"
+                          @bind-Value="_model.Qty" />
+        </MudItem>
+    </MudGrid>
+
+    <MudStack Row="true"
+              Justify="Justify.FlexEnd"
+              Class="mt-4">
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Error"
+                   Href="Rents">Cancel</MudButton>
+        <MudButton Variant="Variant.Filled"
+                   Color="Color.Primary"
+                   OnClick="Submit">Submit</MudButton>
+    </MudStack>
+}

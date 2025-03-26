@@ -10,8 +10,11 @@ using Cinema9.Logics.Movies.Commands.UpdateMovie;
 using Cinema9.Logics.Movies.Queries.GetMovie;
 using Cinema9.Logics.Movies.Queries.GetMovies;
 using Cinema9.Logics.Movies.Queries.GetMoviesLookup;
+using Cinema9.Logics.Movies.Queries.GetMoviesPdf;
+using Cinema9.Logics.Movies.Queries.GetMoviesExcel;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using QuestPDF.Fluent;
 
 namespace Cinema9.WebAPI.Controllers;
 
@@ -120,4 +123,29 @@ public class MoviesController(ISender sender) : ControllerBase
 
         return NoContent();
     }
+
+    [HttpGet("GeneratePdf")]
+    public async Task<ActionResult> GeneratePdf()
+    {
+        var request = new GetMoviesPdfQuery();
+        var output = await sender.Send(request);
+
+        return new FileContentResult(output.Content, output.ContentType)
+        {
+            FileDownloadName = output.FileName
+        };
+    }
+
+    [HttpGet("GenerateExcel")]
+    public async Task<ActionResult> GenerateExcel()
+    {
+        var request = new GetMoviesExcelQuery();
+        var output = await sender.Send(request);
+
+        return new FileContentResult(output.Content, output.ContentType)
+        {
+            FileDownloadName = output.FileName
+        };
+    }
+
 }

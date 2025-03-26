@@ -1,18 +1,24 @@
 ﻿<div style="height: 48px; margin: 8px;">
-    <img src="img/logo.png" alt="Logo Jamkrindo Syariah" style="max-width: 100%; max-height: 100%;" />
+    <img src="img/PDCa.png" alt="Logo PDC" style="max-width: 100%; max-height: 100%;" />
 </div>
 <MudNavMenu>
     <MudNavLink Href="" Match="NavLinkMatch.All">Home</MudNavLink>
-    <MudNavGroup Title="Movies"
-                 Icon="@Icons.Material.Filled.Movie"
+    <MudNavGroup Title="Books"
+                 Icon="@Icons.Material.Filled.Book"
                  Expanded="true">
         <MudNavLink Href="Movies" Match="NavLinkMatch.All">Index</MudNavLink>
-        <MudNavLink Href="Movies/Lookup" Match="NavLinkMatch.Prefix">Lookup</MudNavLink>
+        @* <MudNavLink Href="Movies/Lookup" Match="NavLinkMatch.Prefix">Lookup</MudNavLink> *@
     </MudNavGroup>
-    <MudNavGroup Title="Countries"
-                 Icon="@Icons.Material.Filled.AirplanemodeActive"
+    @* <MudNavGroup Title="Countries"
+                 Icon="@Icons.Material.Filled.Flag"
                  Expanded="true">
         <MudNavLink Href="Countries" Match="NavLinkMatch.All">Index</MudNavLink>
         <MudNavLink Href="Countries/Lookup" Match="NavLinkMatch.Prefix">Lookup</MudNavLink>
+    </MudNavGroup> *@
+    <MudNavGroup Title="Rent"
+                 Icon="@Icons.Material.Filled.PointOfSale"
+                 Expanded="true">
+        <MudNavLink Href="Rents" Match="NavLinkMatch.All">Index</MudNavLink>
+        @* <MudNavLink Href="Countries/Lookup" Match="NavLinkMatch.Prefix">Lookup</MudNavLink> *@
     </MudNavGroup>
 </MudNavMenu>

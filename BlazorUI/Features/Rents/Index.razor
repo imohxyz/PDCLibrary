@@ -1,0 +1,59 @@
+﻿@page "/Rents"
+
+@inject IJSRuntime JsRuntime
+
+<PageHeader Title="Rents" />
+
+<MudStack Row="true"
+          Justify="Justify.FlexEnd"
+          Class="mb-4">
+    <MudButton Variant="Variant.Filled"
+               Color="Color.Primary"
+               Href="Rents/Create">
+        Add New Transaction
+    </MudButton>
+    <MudButton Variant="Variant.Filled"
+               Color="Color.Secondary"
+               OnClick="DownloadPdf">
+        Export Data PDF
+    </MudButton>
+    <MudButton Variant="Variant.Filled"
+               Color="Color.Success"
+               OnClick="DownloadExcel">
+        Export Data Excel
+    </MudButton>
+</MudStack>
+<MudSimpleTable Bordered="true"
+                Striped="true"
+                Hover="true">
+    <thead>
+        <tr>
+            <th>Book Title</th>
+            <th>Qty</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (_isLoading)
+        {
+            <tr>
+                <td colspan="2">
+                    <MudProgressLinear Color="Color.Primary"
+                                       Striped="true"
+                                       Indeterminate="true"
+                                       Class="my-7" />
+                </td>
+            </tr>
+        }
+        @foreach (var rent in _rents)
+        {
+            <tr>
+                <td>
+                    <MudLink Href="@($"Rents/Details/{rent.Id}")">@rent.MovieTitle</MudLink>
+                </td>
+                <td>@rent.Qty</td>
+                <td>@rent.Amount</td>
+            </tr>
+        }
+    </tbody>
+</MudSimpleTable>
