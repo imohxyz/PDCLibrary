@@ -24,7 +24,7 @@ public partial class Create
 
         if (_movies.Count < 1)
         {
-            _errorMessage = "There must be at least 1 Movie.";
+            _errorMessage = "There must be at least 1 Books.";
 
             return;
         }

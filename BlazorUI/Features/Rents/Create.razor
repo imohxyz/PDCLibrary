@@ -15,7 +15,7 @@
 {
     <MudGrid>
         <MudItem xs="12" md="6">
-            <MudSelect Label="Select Movie"
+            <MudSelect Label="Select Book"
                        Variant="Variant.Outlined"
                        T="MovieLookup"
                        @bind-Value="_model.Movie"
@@ -29,7 +29,7 @@
             </MudSelect>
         </MudItem>
         <MudItem xs="12" md="6">
-            <MudTextField Label="Qty"
+            <MudNumericField Label="Qty"
                           Adornment="Adornment.Start"
                           Format="N0"
                           @bind-Value="_model.Qty" />
