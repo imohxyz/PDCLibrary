@@ -29,6 +29,7 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterDto model)
     {
+        // Create user
         var user = new AppUser 
         { 
             UserName = model.Email, 
@@ -41,12 +42,28 @@ public class AuthController : ControllerBase
         if (!result.Succeeded)
             return BadRequest(result.Errors);
         
+        // Add role to user
+        if (!string.IsNullOrWhiteSpace(model.Role))
+        {   
+            // Assign role to user
+            await _userManager.AddToRoleAsync(user, model.Role);
+        }
+        else
+        {
+            // Assign default role if none specified
+            await _userManager.AddToRoleAsync(user, "User");
+        }
+        
         return Ok(new { UserId = user.Id });
     }
 
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginDto model)
     {
+        var user = await _userManager.FindByEmailAsync(model.Email);
+        if (user == null)
+            return Unauthorized();
+        
         var result = await _signInManager.PasswordSignInAsync(
             model.Email, 
             model.Password, 
@@ -56,11 +73,17 @@ public class AuthController : ControllerBase
         if (!result.Succeeded)
             return Unauthorized();
         
-        var user = await _userManager.FindByEmailAsync(model.Email);
         var roles = await _userManager.GetRolesAsync(user);
-        
         var token = GenerateJwtToken(user, roles);
+
         return Ok(new { Token = token });
+    }
+
+    [HttpPost("logout")]
+    public async Task<IActionResult> Logout()
+    {
+        await _signInManager.SignOutAsync();
+        return Ok();
     }
 
     private string GenerateJwtToken(AppUser user, IList<string> roles)
@@ -97,5 +120,12 @@ public class AuthController : ControllerBase
     }
 }
 
-public record RegisterDto(string Email, string Password, string FullName);
+public record RegisterDto {
+    public string Email { get; set; } = String.Empty;
+    public string Password { get; set; } = String.Empty;
+    public string FullName { get; set; } = String.Empty;
+    public string? Role { get; set; }
+
+}
+
 public record LoginDto(string Email, string Password);
